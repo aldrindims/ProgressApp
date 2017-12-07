@@ -17,11 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
     }
 
-    private static final String CREATE_TABLE_HOMEWORK = "CREATE TABLE HOMEWORK (ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEGORY_SCORE INTEGER, CATEGORY_TOTAL INTEGER)";
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CREATE_TABLE_HOMEWORK);
+        sqLiteDatabase.execSQL("CREATE TABLE HOMEWORK (ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEGORY_SCORE INTEGER, CATEGORY_TOTAL INTEGER)");
     }
 
     @Override
@@ -36,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("CATEGORY_SCORE", CATEGORY_SCORE);
         contentValues.put("CATEGORY_TOTAL", CATEGORY_TOTAL);
 
-        long result = db.insert("homework", null, contentValues);
+        long result = db.insert("HOMEWORK", null, contentValues);
 
         if (result == -1) {
             return false;
