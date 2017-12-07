@@ -21,7 +21,8 @@
         <activity android:name=".Homework" />
         <activity android:name=".LabExer" />
         <activity android:name=".Quizzes" />
-        <activity android:name=".MajorExams"></activity>
+        <activity android:name=".MajorExams" />
+        <activity android:name=".CustomDialog"></activity>
     </application>
 
 </manifest>
