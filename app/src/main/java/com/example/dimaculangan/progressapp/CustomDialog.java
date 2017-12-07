@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -26,38 +27,25 @@ public class CustomDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.activity_custom_dialog, null);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Score");
         builder.setView(view);
-        builder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                et_User = (EditText) view.findViewById(R.id.score);
-                et_Password = (EditText) view.findViewById(R.id.total_score);
+                et_User = ((EditText)view.findViewById(R.id.score));
+                et_Password = ((EditText)view.findViewById(R.id.total_score));
                 CATEGORY_SCORE = Integer.parseInt(et_User.getText().toString());
                 CATEGORY_TOTAL = Integer.parseInt(et_Password.getText().toString());
-                String msg = "Username is " + CATEGORY_SCORE + ", Password is " + CATEGORY_TOTAL;
-                Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-
-                    boolean insertData = myDatabaseHelper.insertAddHomework(CATEGORY_SCORE, CATEGORY_TOTAL);
-
-                    if (insertData) {
-                        Toast.makeText(getActivity(), "Data Successfully Inserted!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-
+                myDatabaseHelper.insertAdd(CATEGORY_SCORE, CATEGORY_TOTAL);
             }
         });
-
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
         });
-
-        builder.setTitle("Login");
 
         Dialog dialog = builder.create();
         return dialog;

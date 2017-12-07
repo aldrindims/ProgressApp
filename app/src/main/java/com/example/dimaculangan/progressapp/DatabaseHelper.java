@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Aldrin on 29/11/2017.
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertAddHomework(int CATEGORY_SCORE, int CATEGORY_TOTAL){
+    public boolean insertAdd(int CATEGORY_SCORE, int CATEGORY_TOTAL){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("CATEGORY_SCORE", CATEGORY_SCORE);
